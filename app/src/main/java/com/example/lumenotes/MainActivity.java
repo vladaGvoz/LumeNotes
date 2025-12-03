@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// cekiranje gitovanja
+
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
