@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.LumeNotes" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Light theme colors -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/textPrimary</item>
+
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/textPrimary</item>
+
+        <item name="colorTertiary">@color/colorSecondary</item>
+        <item name="colorOnTertiary">@color/textPrimary</item>
+
+        <item name="android:statusBarColor">@color/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+        <!-- Text / Hint colors -->
+        <item name="android:textColorPrimary">@color/textPrimary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
+        <item name="android:textColorHint">@color/textHint</item>
+
+        <!-- Floating action buttons -->
+        <item name="floatingActionButtonStyle">@style/Widget.LumeNotes.FAB</item>
+
+        <!-- Banner / App background -->
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
+    <!-- Main theme inherits base -->
+    <style name="Theme.LumeNotes" parent="Base.Theme.LumeNotes" />
+
+    <!-- FAB style -->
+    <style name="Widget.LumeNotes.FAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/fabAdd</item>
+        <item name="iconTint">@color/textPrimary</item>
+    </style>
+
+
+</resources>

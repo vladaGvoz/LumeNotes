@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base dark theme -->
+    <style name="Base.Theme.LumeNotes" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Primary / background colors -->
+        <item name="colorPrimary">@color/colorPrimary</item>               <!-- main background -->
+        <item name="colorOnPrimary">@color/textPrimary</item>             <!-- text/icons on primary -->
+        <item name="colorPrimaryContainer">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimaryContainer">@color/textPrimary</item>
+
+        <!-- Secondary / accent -->
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorTertiary">@color/colorSecondary</item>
+
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@color/textPrimary</item>
+        <item name="android:textColorSecondary">@color/textSecondary</item>
+        <item name="android:textColorHint">@color/textHint</item>
+
+        <!-- Window / system bars -->
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+
+        <!-- Floating Action Buttons -->
+        <item name="floatingActionButtonStyle">@style/Widget.LumeNotes.FAB</item>
+
+    </style>
+
+    <!-- Main dark theme -->
+    <style name="Theme.LumeNotes.Dark" parent="Base.Theme.LumeNotes" />
+
+    <!-- FAB style -->
+    <style name="Widget.LumeNotes.FAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/fabAdd</item>
+        <item name="iconTint">@color/textPrimary</item>
+    </style>
+
+</resources>

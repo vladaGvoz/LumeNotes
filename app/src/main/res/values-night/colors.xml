@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary / Background -->
+    <color name="colorPrimary">#1A0D3B</color>        <!-- main dark purple background -->
+    <color name="colorPrimaryVariant">#120932</color>  <!-- darker variant for status bar / containers -->
+    <color name="colorSecondary">#FFD600</color>      <!-- yellow accent -->
+
+    <!-- Text -->
+    <color name="textPrimary">#FFF59D</color>         <!-- light yellow main text -->
+    <color name="textSecondary">#FFECB3</color>       <!-- secondary text -->
+    <color name="textHint">#FFF176</color>            <!-- hint text -->
+
+    <!-- FABs -->
+    <color name="fabAdd">#FFEB3B</color>              <!-- bright yellow add button -->
+    <color name="fabDelete">#FFC107</color>           <!-- slightly darker yellow delete button -->
+
+    <!-- Banner -->
+    <color name="bannerBackground">#2C1B55</color>   <!-- dark purple banner -->
+    <color name="bannerText">#FFF59D</color>          <!-- yellow banner text -->
+
+    <!-- Notes / Cards -->
+    <color name="noteItemBackground">#2C1B55</color>  <!-- dark purple note cards -->
+</resources>
