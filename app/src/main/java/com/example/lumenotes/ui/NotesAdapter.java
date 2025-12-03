@@ -16,6 +16,8 @@ import com.example.lumenotes.model.Note;
 import java.util.ArrayList;
 import java.util.List;
 
+// cekiranje gitovanja #2
+
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
     public List<Note> notes;

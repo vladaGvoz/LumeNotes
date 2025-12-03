@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// cekiranje gitovanja
+// cekiranje gitovanja #2
 
 public class MainActivity extends AppCompatActivity {
 
