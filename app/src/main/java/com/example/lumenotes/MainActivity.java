@@ -26,7 +26,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    NotesAdapter adapter;
+    public NotesAdapter adapter;
     FloatingActionButton fabAdd, fabDelete;
 
     NoteDatabase db;
@@ -50,26 +50,50 @@ public class MainActivity extends AppCompatActivity {
         tvEmpty = findViewById(R.id.tvEmpty);
 
         fabAdd.setOnClickListener(v -> {
+            clearSelection();
+            if (adapter != null) adapter.disableDeleteMode();
             Intent intent = new Intent(MainActivity.this, AddEditNoteActivity.class);
             startActivity(intent);
         });
 
+
         fabDelete.setOnClickListener(v -> deleteSelectedNotes());
 
         setupSwipeToDelete();
+
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, android.view.MotionEvent e) {
+                if (adapter.getSelectedPositions().size() > 0 && e.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+                    android.view.View child = rv.findChildViewUnder(e.getX(), e.getY());
+                    if (child == null) {
+                        clearSelection();
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, android.view.MotionEvent e) { }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
+        });
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if(adapter != null) adapter.disableDeleteMode();
         loadNotes();
     }
 
     private void loadNotes() {
         notes = db.noteDao().getAllNotes();
 
-
-        if (notes.isEmpty()){
+        if (notes.isEmpty()) {
             tvEmpty.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         } else {
@@ -77,22 +101,29 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setVisibility(View.VISIBLE);
         }
 
-        adapter = new NotesAdapter(notes, this);
+        if (adapter == null) {
+            adapter = new NotesAdapter(notes, this);
 
-        adapter.setListener(new NotesAdapter.NoteActionListener() {
-            @Override
-            public void onLongPress() {
-                fabDelete.setVisibility(View.VISIBLE);
-            }
+            adapter.setListener(new NotesAdapter.NoteActionListener() {
+                @Override
+                public void onLongPress() {
+                    fabDelete.setVisibility(View.VISIBLE);
+                }
 
-            @Override
-            public void onSelectionChanged(int count) {
-                fabDelete.setVisibility(count > 0 ? View.VISIBLE : View.GONE);
-            }
-        });
+                @Override
+                public void onSelectionChanged(int count) {
+                    fabDelete.setVisibility(count > 0 ? View.VISIBLE : View.GONE);
+                }
+            });
 
-        recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);
+        } else {
+            adapter.notes = notes;
+            adapter.disableDeleteMode();
+            adapter.notifyDataSetChanged();
+        }
     }
+
 
     private void deleteSelectedNotes() {
         List<Integer> selected = adapter.getSelectedPositions();
@@ -162,4 +193,39 @@ public class MainActivity extends AppCompatActivity {
 
         }).attachToRecyclerView(recyclerView);
     }
+
+    private void clearSelection() {
+        if (adapter != null) {
+            adapter.disableDeleteMode();
+            fabDelete.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(android.view.MotionEvent ev) {
+        if (ev.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+
+            android.view.View v = getCurrentFocus();
+
+            if (adapter != null && adapter.getSelectedPositions().size() > 0) {
+
+                int[] recyclerCoords = new int[2];
+                recyclerView.getLocationOnScreen(recyclerCoords);
+
+                float x = ev.getRawX();
+                float y = ev.getRawY();
+
+                if (x < recyclerCoords[0] || x > recyclerCoords[0] + recyclerView.getWidth()
+                        || y < recyclerCoords[1] || y > recyclerCoords[1] + recyclerView.getHeight()) {
+
+                    clearSelection();
+                }
+            }
+        }
+
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+
 }

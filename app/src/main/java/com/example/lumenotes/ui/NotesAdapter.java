@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lumenotes.MainActivity;
 import com.example.lumenotes.R;
 import com.example.lumenotes.model.Note;
 
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
-    List<Note> notes;
+    public List<Note> notes;
     Context context;
 
     private boolean deleteMode = false;
@@ -60,6 +61,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
         holder.itemView.setOnClickListener(v -> {
             if (!deleteMode) {
+                if (context instanceof MainActivity) {
+                    ((MainActivity) context).adapter.disableDeleteMode();
+                }
                 Intent intent = new Intent(context, AddEditNoteActivity.class);
                 intent.putExtra("NOTE_ID", note.id);
                 context.startActivity(intent);
@@ -67,6 +71,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
                 toggleSelection(position);
             }
         });
+
 
         holder.itemView.setOnLongClickListener(v -> {
             deleteMode = true;
@@ -113,4 +118,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             content = itemView.findViewById(R.id.noteContent);
         }
     }
+
+    public  void clearSelection() {
+        selectedPositions.clear();
+        if(listener != null) listener.onSelectionChanged(0);
+        notifyDataSetChanged();
+    }
+
 }
