@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Title -->
     <EditText
         android:id="@+id/editTitle"
         android:hint="@string/title"
@@ -13,21 +14,46 @@
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"/>
 
+    <!-- Content with box style -->
     <EditText
         android:id="@+id/editContent"
         android:hint="@string/content"
         android:layout_marginTop="8dp"
         android:minLines="6"
-        android:gravity="top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:gravity="top|start"
+        android:background="@drawable/edittext_box"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 
+    <!-- Save button -->
     <Button
         android:id="@+id/btnSave"
         android:text="@string/save"
         android:layout_gravity="center"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <!-- Bottom banner -->
+    <LinearLayout
+        android:id="@+id/bottomBanner"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#FFEB3B"
+    android:padding="12dp"
+    android:layout_marginTop="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="Your Banner Text Here"
+        android:textColor="#4A148C"
+        android:textSize="16sp"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
 </LinearLayout>
+
+    </LinearLayout>

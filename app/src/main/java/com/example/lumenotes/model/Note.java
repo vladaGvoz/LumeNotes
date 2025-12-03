@@ -26,11 +26,6 @@ public class Note {
         this.id = id;
     }
 
-    @NonNull
-    public String getTitle() {
-        return title;
-    }
-
     public String getContent() {
         return content;
     }

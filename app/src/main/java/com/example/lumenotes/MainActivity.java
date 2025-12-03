@@ -1,10 +1,12 @@
 package com.example.lumenotes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -63,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, android.view.MotionEvent e) {
-                if (adapter.getSelectedPositions().size() > 0 && e.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull android.view.MotionEvent e) {
+                if (!adapter.getSelectedPositions().isEmpty() && e.getAction() == android.view.MotionEvent.ACTION_DOWN) {
                     android.view.View child = rv.findChildViewUnder(e.getX(), e.getY());
                     if (child == null) {
                         clearSelection();
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTouchEvent(RecyclerView rv, android.view.MotionEvent e) { }
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull android.view.MotionEvent e) { }
 
             @Override
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         loadNotes();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void loadNotes() {
         notes = db.noteDao().getAllNotes();
 
@@ -137,12 +140,13 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void performDelete(List<Integer> selectedPositions) {
 
         List<Note> deleted = new ArrayList<>();
 
         List<Integer> sorted = new ArrayList<>(selectedPositions);
-        Collections.sort(sorted, Collections.reverseOrder());
+        sorted.sort(Collections.reverseOrder());
 
         for (int pos : sorted) {
             Note note = notes.get(pos);
@@ -176,17 +180,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onMove(
-                    RecyclerView recyclerView,
-                    RecyclerView.ViewHolder viewHolder,
-                    RecyclerView.ViewHolder target
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    @NonNull RecyclerView.ViewHolder target
             ) {
                 return false;
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-                int pos = viewHolder.getAdapterPosition();
+                int pos = viewHolder.getBindingAdapterPosition();
                 List<Integer> single = Collections.singletonList(pos);
                 performDelete(single);
             }
@@ -205,9 +209,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean dispatchTouchEvent(android.view.MotionEvent ev) {
         if (ev.getAction() == android.view.MotionEvent.ACTION_DOWN) {
 
-            android.view.View v = getCurrentFocus();
+            getCurrentFocus();
 
-            if (adapter != null && adapter.getSelectedPositions().size() > 0) {
+            if (adapter != null && !adapter.getSelectedPositions().isEmpty()) {
 
                 int[] recyclerCoords = new int[2];
                 recyclerView.getLocationOnScreen(recyclerCoords);

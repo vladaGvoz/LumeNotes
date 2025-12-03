@@ -1,5 +1,6 @@
 package com.example.lumenotes.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lumenotes.MainActivity;
@@ -18,6 +20,7 @@ import java.util.List;
 
 // cekiranje gitovanja #2
 
+@SuppressWarnings("ClassEscapesDefinedScope")
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
     public List<Note> notes;
@@ -42,8 +45,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         this.context = context;
     }
 
+    @NonNull
     @Override
-    public NoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.note_item, parent, false);
         return new NoteViewHolder(view);
@@ -83,6 +87,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void toggleSelection(int position) {
         if (selectedPositions.contains(position)) {
             selectedPositions.remove(Integer.valueOf(position));
@@ -100,6 +105,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         return selectedPositions;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void disableDeleteMode() {
         deleteMode = false;
         selectedPositions.clear();
@@ -119,12 +125,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             title = itemView.findViewById(R.id.noteTitle);
             content = itemView.findViewById(R.id.noteContent);
         }
-    }
-
-    public  void clearSelection() {
-        selectedPositions.clear();
-        if(listener != null) listener.onSelectionChanged(0);
-        notifyDataSetChanged();
     }
 
 }
