@@ -1,16 +1,16 @@
 package com.example.lumenotes;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lumenotes.data.NoteDatabase;
 import com.example.lumenotes.model.Note;
@@ -27,8 +27,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
     public NotesAdapter adapter;
+    RecyclerView recyclerView;
     FloatingActionButton fabAdd, fabDelete;
 
     NoteDatabase db;
@@ -76,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull android.view.MotionEvent e) { }
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull android.view.MotionEvent e) {
+            }
 
             @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
         });
 
 
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(adapter != null) adapter.disableDeleteMode();
+        if (adapter != null) adapter.disableDeleteMode();
         loadNotes();
     }
 
@@ -229,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.dispatchTouchEvent(ev);
     }
-
 
 
 }

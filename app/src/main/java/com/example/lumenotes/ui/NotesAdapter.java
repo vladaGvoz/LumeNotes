@@ -23,26 +23,19 @@ import java.util.List;
 @SuppressWarnings("ClassEscapesDefinedScope")
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 
+    private final List<Integer> selectedPositions = new ArrayList<>();
     public List<Note> notes;
     Context context;
-
     private boolean deleteMode = false;
-    private final List<Integer> selectedPositions = new ArrayList<>();
-
-    public interface NoteActionListener {
-        void onLongPress();
-        void onSelectionChanged(int count);
-    }
-
     private NoteActionListener listener;
-
-    public void setListener(NoteActionListener listener) {
-        this.listener = listener;
-    }
 
     public NotesAdapter(List<Note> notes, Context context) {
         this.notes = notes;
         this.context = context;
+    }
+
+    public void setListener(NoteActionListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -115,6 +108,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     @Override
     public int getItemCount() {
         return notes.size();
+    }
+
+    public interface NoteActionListener {
+        void onLongPress();
+
+        void onSelectionChanged(int count);
     }
 
     static class NoteViewHolder extends RecyclerView.ViewHolder {

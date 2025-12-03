@@ -11,8 +11,6 @@ import com.example.lumenotes.model.Note;
 @Database(entities = {Note.class}, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
 
-    public abstract NoteDao noteDao();
-
     private static NoteDatabase INSTANCE;
 
     public static synchronized NoteDatabase getInstance(Context context) {
@@ -24,4 +22,6 @@ public abstract class NoteDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    public abstract NoteDao noteDao();
 }
