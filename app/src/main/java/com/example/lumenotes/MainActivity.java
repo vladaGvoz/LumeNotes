@@ -129,18 +129,35 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void deleteSelectedNotes() {
         List<Integer> selected = adapter.getSelectedPositions();
         if (selected.isEmpty()) return;
 
-        new androidx.appcompat.app.AlertDialog.Builder(this)
+        androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
                 .setTitle("Delete Notes")
                 .setMessage("Are you sure you want to delete selected notes?")
-                .setPositiveButton("Delete", (dialog, which) -> performDelete(selected))
+                .setPositiveButton("Delete", (d, which) -> performDelete(selected))
                 .setNegativeButton("Cancel", null)
                 .show();
+
+        int buttonColor = getColorFromAttr();
+
+        if (dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE) != null)
+            dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(buttonColor);
+
+        if (dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE) != null)
+            dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(buttonColor);
     }
+
+    private int getColorFromAttr() {
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(android.R.attr.textColorPrimary, typedValue, true);
+        return typedValue.data;
+    }
+
+
 
     @SuppressLint("NotifyDataSetChanged")
     private void performDelete(List<Integer> selectedPositions) {
@@ -228,9 +245,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
         return super.dispatchTouchEvent(ev);
     }
-
-
 }

@@ -10,7 +10,9 @@
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:padding="5dp"
+        android:background="@drawable/edittext_box"
         android:hint="@string/title"
         android:textSize="18sp" />
 
@@ -19,7 +21,7 @@
         android:id="@+id/editContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/edittext_box"
         android:gravity="top|start"
         android:hint="@string/content"

@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary / Background -->
     <color name="colorPrimary">#FDF6E3</color>
     <color name="colorPrimaryVariant">#FFF8D2</color>
     <color name="colorSecondary">#D8B4FF</color>
-
-    <!-- Text -->
     <color name="textPrimary">#4A148C</color>
     <color name="textSecondary">#6B4FA1</color>
     <color name="textHint">#9C75CC</color>
-
-    <!-- FABs -->
     <color name="fabAdd">#FBC02D</color>
     <color name="fabDelete">#FFEB99</color>
-
-    <!-- Banner -->
     <color name="bannerBackground">#FFF59D</color>
     <color name="bannerText">#4A148C</color>
-
-    <!-- Notes / Cards -->
     <color name="noteItemBackground">#FFFFFF</color>
-
-    <!-- Container Backgrounds -->
     <color name="darkPurple">#EDE7F6</color>
     <color name="darkerPurple">#D1C4E9</color>
+    <color name="cardBackground">#FFF9C4</color>
+    <color name="cardBorder">#FBC02D</color>
+    <color name="dialogMessageText">#212121</color>
 </resources>

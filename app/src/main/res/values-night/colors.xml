@@ -20,4 +20,10 @@
 
     <!-- Notes / Cards -->
     <color name="noteItemBackground">#2C1B55</color>  <!-- dark purple note cards -->
+
+
+    <color name="cardBackground">#2C1B55</color>       <!-- dark purple for dark mode -->
+    <color name="cardBorder">#4A148C</color>
+    <color name="dialogMessageText">#FFFFFF</color> <!-- white -->
+
 </resources>
