@@ -18,8 +18,6 @@ import com.example.lumenotes.model.Note;
 import java.util.ArrayList;
 import java.util.List;
 
-// cekiranje gitovanja #2
-
 @SuppressWarnings("ClassEscapesDefinedScope")
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
 

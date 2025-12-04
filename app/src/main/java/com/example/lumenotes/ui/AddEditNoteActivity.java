@@ -31,10 +31,9 @@ public class AddEditNoteActivity extends AppCompatActivity {
         content = findViewById(R.id.editContent);
         save = findViewById(R.id.btnSave);
 
-        // <-- CORRECT: read NOTE_ID as int (matches adapter's putExtra)
         int id = getIntent().getIntExtra("NOTE_ID", -1);
         if (id != -1) {
-            currentNote = db.noteDao().getNoteById(id); // NoteDao expects long, int widens automatically
+            currentNote = db.noteDao().getNoteById(id);
             if (currentNote != null) {
                 title.setText(currentNote.title);
                 content.setText(currentNote.content);
