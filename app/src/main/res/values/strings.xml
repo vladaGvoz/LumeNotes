@@ -46,5 +46,5 @@
     <string name="title">Title</string>
     <string name="save">Save</string>
     <string name="content">Content</string>
-    <string name="no_notes_yet_add_one">No notes yet… add one+</string>
+    <string name="no_notes_yet_add_one">Start typing+</string>
 </resources>
