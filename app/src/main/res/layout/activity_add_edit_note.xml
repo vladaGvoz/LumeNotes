@@ -1,61 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true"
+    android:background="?attr/colorPrimary">
 
-    <!-- Title -->
-    <EditText
-        android:id="@+id/editTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:padding="5dp"
-        android:background="@drawable/edittext_box"
-        android:hint="@string/title"
-        android:textSize="18sp" />
-
-    <!-- Content with box style -->
-    <EditText
-        android:id="@+id/editContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/edittext_box"
-        android:gravity="top|start"
-        android:hint="@string/content"
-        android:minLines="6"
-        android:padding="8dp" />
-
-    <!-- Save button -->
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="@string/save"
-        android:textSize="18sp" />
-
-    <!-- Bottom banner -->
     <LinearLayout
-        android:id="@+id/bottomBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#FFEB3B"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="12dp">
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- TITLE -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your Banner Text Here"
-            android:textColor="#4A148C"
+            android:layout_marginTop="24dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/colorSecondary"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:hintTextColor="@color/textHint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimary"
+                android:padding="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- CONTENT -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/colorSecondary"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:hintTextColor="@color/textHint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/content"
+                android:minLines="6"
+                android:gravity="top|start"
+                android:textSize="15sp"
+                android:textColor="@color/textPrimary"
+                android:padding="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- SAVE BUTTON -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/save"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="@color/textPrimary"
+            android:paddingVertical="14dp"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/colorSecondary"
+            app:icon="@drawable/ic_save"
+            app:iconTint="@color/textPrimary"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp" />
+
+        <!-- BOTTOM BANNER -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bottomBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/bannerBackground">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:gravity="center"
+                android:text="Your Banner Text Here"
+                android:textColor="@color/bannerText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
